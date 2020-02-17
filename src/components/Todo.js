@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 import './Todo.css'
+import Task from './Task'
 
-function Task({ task }) {
-  return (
-    <div className="task" style={{ textDecoration: task.completed ? "line-through" : "" }} >
-      {task.title}
-    </div>
-  )
-}
 
 function Todo() {
   const [tasks, setTasks] = useState([
@@ -24,6 +18,7 @@ function Todo() {
       completed: false
     }
   ])
+
   return (
     <div className="todo-container">
       <div className="header">ToDo Items</div>
