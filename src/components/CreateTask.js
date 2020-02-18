@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-function CreateTask({ addTask }) {
+
+export default function CreateTask({ addTask }) {
   const [value, setValue] = useState("")
 
   const handleSubmit = event => {
