@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Todo.css'
 import Task from './Task'
 import CreateTask from './CreateTask'
 
 
 function Todo() {
+  const [tasksRemaining, setTasksRemaining] = useState(0)
   const [tasks, setTasks] = useState([
     {
       title: "Study algorithms",
@@ -19,6 +20,10 @@ function Todo() {
       completed: false
     }
   ])
+
+  useEffect(() => {
+    setTasksRemaining(tasks.filter(task => !task.completed).length)
+  })
 
   const addTask = title => {
     const newTasks = [...tasks, { title, completed: false }]
@@ -37,12 +42,15 @@ function Todo() {
     setTasks(newTasks)
   }
 
+
+
   return (
     <div className="todo-container">
+      <div className="header">Pending tasks ({tasksRemaining})</div>
       <div className="header">ToDo Items</div>
       <div className="tasks">
         {tasks.map((task, index) => (
-          <Task task={task} index={index} key={index} completeTask={completeTask} removeTask={removeTask} />
+          <Task task={task} index={index} completeTask={completeTask} removeTask={removeTask} key={index} />
         ))}
       </div>
       <div className="create-task">
